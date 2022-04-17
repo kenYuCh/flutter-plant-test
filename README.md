@@ -1,4 +1,4 @@
 # plant_iot_app_test
 
-cd flutter-plant-test/
-flutter run
+### 1. cd flutter-plant-test/
+### 2. flutter run
