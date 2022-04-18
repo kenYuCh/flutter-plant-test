@@ -1,14 +1,14 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-class Setting extends StatefulWidget {
-  const Setting({Key? key}) : super(key: key);
+class BuildChart extends StatefulWidget {
+  const BuildChart({Key? key}) : super(key: key);
 
   @override
-  _SettingState createState() => _SettingState();
+  _buildChartState createState() => _buildChartState();
 }
 
-class _SettingState extends State<Setting> {
+class _buildChartState extends State<BuildChart> {
   @override
   Widget build(BuildContext context) {
     return LineChart(
@@ -41,7 +41,9 @@ class _SettingState extends State<Setting> {
               FlSpot(11, 4),
             ],
             belowBarData: BarAreaData(
-                show: true, color: Color.fromARGB(66, 192, 192, 192)),
+              show: false,
+              color: Color.fromARGB(66, 192, 192, 192),
+            ),
           )
         ],
       ),
@@ -76,7 +78,9 @@ class LineTitles {
                   break;
               }
               return Padding(
-                  child: text, padding: const EdgeInsets.only(top: 10.0));
+                child: text,
+                padding: const EdgeInsets.only(top: 10.0),
+              );
             },
           ),
         ),

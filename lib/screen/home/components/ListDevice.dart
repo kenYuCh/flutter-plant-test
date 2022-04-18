@@ -8,6 +8,7 @@ Widget buildListView(_controller) {
     itemCount: 40,
     controller: _controller,
     itemBuilder: (context, index) {
+      print(index);
       return Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20.0,
@@ -17,21 +18,21 @@ Widget buildListView(_controller) {
           children: [
             Container(
               color: Colors.amber,
-              child: Text("asd",
+              child: Text("t$index",
                   style: TextStyle(
                     color: Colors.white,
                   )),
             ),
             SizedBox(width: 50.0),
             Container(
-              child: Text("asd",
+              child: Text("c$index",
                   style: TextStyle(
                     color: Colors.white,
                   )),
             ),
             Spacer(),
             Container(
-              child: Text("asd",
+              child: Text("$index",
                   style: TextStyle(
                     color: Colors.white,
                   )),

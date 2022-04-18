@@ -16,7 +16,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody1> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      print(_controller.offset);
+      // print(_controller.offset);
       if (_controller.offset < 1000 && showToTopBtn) {
         setState(() {
           showToTopBtn = false;
@@ -40,6 +40,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody1> {
   final dataKey = new GlobalKey();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     // 滾動效果再由CustomScrollView統一控制
     return Column(
       children: [
@@ -75,6 +76,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody1> {
                         title: const Text("Controll"),
                         children: [
                           Container(
+                            height: size.height * 0.95,
                             child: buildListView(_controller),
                           )
                         ],

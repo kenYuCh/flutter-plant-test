@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_iot_app2/screen/device/components/ItemChart.dart';
 import 'package:plant_iot_app2/screen/home/components/ListDevice.dart';
 import 'package:plant_iot_app2/screen/home/components/searchTextBox.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -86,18 +87,39 @@ class _DeviceBodyState extends State<DeviceBody> {
               content: AnimatedCrossFade(
                 duration: const Duration(milliseconds: 300),
                 firstChild: Container(
-                  height: size.height * 0.99,
+                  height: size.height * 0.65,
                   child: ListView.builder(
-                    itemCount: 30,
-                    itemExtent: 50.0,
+                    itemCount: catagory.length,
+                    itemExtent: 100.0,
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
                     itemBuilder: (context, index) {
                       print("listview: $index");
-                      return Container(
-                        child: Text(
-                          "asdasdads: $index",
-                          style: TextStyle(color: Colors.white),
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              constraints:
+                                  BoxConstraints(maxWidth: double.infinity),
+                              alignment: Alignment.center,
+                              child: catagory[index].icons,
+                            ),
+                            Expanded(
+                              child: BuildChart(),
+                            ),
+                            Container(
+                              child: Text(
+                                "${catagory[index].temp}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       );
                     },
@@ -168,3 +190,105 @@ class _DeviceBodyState extends State<DeviceBody> {
     );
   }
 }
+
+class DeviceItem {
+  final int id;
+  final Icon icons;
+  final String name;
+  final double temp;
+  List<double> deviceChartData;
+  DeviceItem(this.id, this.icons, this.name, this.temp, this.deviceChartData) {
+    assert(id != null, "A msg ID is required.");
+    assert(name != null, "Msg name is required.");
+    assert(temp != null, "Msg temp is required.");
+    assert(deviceChartData != null, "Msg temp is required.");
+  }
+}
+
+class DeviceItemChart {
+  List<double> deviceItem;
+  DeviceItemChart({required this.deviceItem});
+}
+
+List<DeviceItem> catagory = [
+  DeviceItem(
+      1,
+      Icon(
+        Icons.device_thermostat_outlined,
+        color: Colors.white,
+      ),
+      "name1",
+      50.10,
+      []),
+  DeviceItem(
+      2,
+      Icon(
+        Icons.device_thermostat_outlined,
+        color: Colors.white,
+      ),
+      "name2",
+      55.10,
+      []),
+];
+
+
+
+
+
+
+
+
+
+// content: AnimatedCrossFade(
+//   duration: const Duration(milliseconds: 300),
+//   firstChild: Container(
+//     height: size.height * 0.99,
+//     child: ListView.builder(
+//       itemCount: 30,
+//       itemExtent: 100.0,
+//       shrinkWrap: true,
+//       physics: ScrollPhysics(),
+//       itemBuilder: (context, index) {
+//         print("listview: $index");
+//         return Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           mainAxisSize: MainAxisSize.max,
+//           children: [
+//             Container(
+//               constraints:
+//                   BoxConstraints(maxWidth: double.infinity),
+//               alignment: Alignment.center,
+//               child: Text(
+//                 "temp",
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//             Container(
+//               child: Text(
+//                 "content",
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//             Container(
+//               child: Text(
+//                 "ster",
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             )
+//           ],
+//         );
+//       },
+//     ),
+//   ),
+//   secondChild: Container(),
+//   crossFadeState: isExpanded[0]
+//       ? CrossFadeState.showFirst
+//       : CrossFadeState.showSecond,
+// ),
